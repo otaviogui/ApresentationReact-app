@@ -1,5 +1,6 @@
 import React from "react";
 import Input from "../Input";
+import { MdSearch } from "react-icons/md";
 
 class SearcCompany extends React.Component{
     constructor(props){
@@ -13,8 +14,10 @@ class SearcCompany extends React.Component{
     render(){
         return(
             <div>
-                <Input id="search" placeholder="Pesquise pelo o nome "/><i class="">ICONE</i>
+                <Input id="search" placeholder="Pesquise pelo o nome "/>
+                <MdSearch />
             </div>
         );
     }
 }
+export default SearcCompany;
