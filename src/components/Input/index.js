@@ -19,6 +19,7 @@ export default function Input(props){
            type={props.type} 
            id={props.id} 
            placeholder={props.placeholder} 
-           search={props.search}/>
+           search={props.search}
+           onChange={props.onChange}/>
     );
 }

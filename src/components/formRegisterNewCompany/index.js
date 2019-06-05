@@ -37,45 +37,32 @@ class FormRegisterNewCompany extends React.Component{
        
         
         this.setState({
-            company: company
+            company: company,
+            address:address
         });
+        console.log("Salvo o estado aqui")
     }
 
-    resetState() {
-        let company={
-            name:"",
-            mainNumber:"",
-            whatsappNumber:"",
-            imageLogo:"",
-        }
-        let address ={
-            CEP:"",
-            state:"",
-            city:"",
-            neighborhood:"",
-            number:"",
-            complement:""
-        }
-        this.setState({
-          company: company,
-          address:address
-        });
-      }
-
+   
     handleSubmit = (event) => {
         
         console.log("Form submetido.");
         
         event.preventDefault();
-            let companhia = this.state.company;
-            
+            let companhia = this.state.company ;
+            let address = this.state.address;
             let	storage	= window.localStorage;
+
+            console.log(storage);
 
             let listaClientes = JSON.parse(localStorage.getItem('companhias')) || []; 
             
-            listaClientes.push(companhia);
+            listaClientes.push(companhia, address);
+            
             
             storage.setItem("companhias", JSON.stringify(listaClientes));
+
+            console.log("salvou no formulario submetido")
         
     }
     
