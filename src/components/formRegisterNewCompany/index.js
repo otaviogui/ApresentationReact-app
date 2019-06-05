@@ -67,6 +67,7 @@ class FormRegisterNewCompany extends React.Component{
     }
     
     render(){
+        
         return(
             <div >
                 <form onSubmit={this.handleSubmit}>
@@ -115,7 +116,22 @@ class FormRegisterNewCompany extends React.Component{
                     </div>
                     <div class="">
                         
-                        <Button text="Cadastrar Companhia">Butoon </Button>
+                    <Button text="Cadastrar Companhia"
+                        style={{
+                            backgroundColor: '#808080',
+                            color: '#fff',
+                            borderRadius: 15,
+                            width: '20%',
+                            height: 30,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            fontWeight: 'bold',
+                            fontSize: 12,
+                            marginLeft: '5%',
+                            marginTop: 10
+                        }}
+                    >
+                        Cadastrar Companhia </Button>
                     </div>
                 </form>
             </div>
