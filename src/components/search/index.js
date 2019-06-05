@@ -14,7 +14,7 @@ class SearcCompany extends React.Component{
     render(){
         return(
             <div>
-                <Input id="search" placeholder="Pesquise pelo o nome "/>
+                <Input id="search" placeholder="Pesquise pelo o nome " search={true}/>
                 <MdSearch />
             </div>
         );
