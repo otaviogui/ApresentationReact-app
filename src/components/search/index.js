@@ -1,57 +1,77 @@
 import React from "react";
-import Input from "../Input";
 import { MdSearch } from "react-icons/md";
+import {Container, Row, Col, FormGroup, Input, Button, Alert} from 'reactstrap';
 
 class SearchCompany extends React.Component{
     constructor(props){
         super(props);
         this.state ={
-            search_company:''
+            search_company:'', 
+            validation:{
+                search:true,
+                errorMenssages:[]
+            }
         }
+    }
+
+    validateSearch(){
+        let search = this.state.search_company;
+        if(search.length>=3){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    validate(){
+        let validation = this.state.validation;
+        validation.search_company = this.validateSearch();
+        validation.errorMenssages = [];
+
+        if(!validation.search_company){
+            validation.errorMenssages.push("Para realizar a pesquisa deve conter 3 caracteres ou mais");
+        }
+        this.setState({
+            validation: validation
+        })
+        return validation.errorMenssages.length === 0;
     }
     handlerInputChange = (e) => {
         let search_company = this.state.search_company;
-        let id = e.target.id;
         let value = e.target.value;
         search_company = value;
         this.setState({
             search_company:search_company
         });
-
-
-        console.log("Pesquisa indo pelo handler")
     }
-
-    getCompany =(e)=>{
-       
-    }
-
     handleSubmit = (event) => {
-        
-        console.log("Form submetido.");
-        
         event.preventDefault();
-        let search_company = this.state.search_company;
-        if(search_company.length >= 3){
-            
-        let words = JSON.parse(localStorage.getItem("companhias"))||[];
-
-        console.log('retornou a pesquisa', words);
-        }else{
-            console.log("nao retornou a pesquisa")
+        if(this.validate()){
+            let words = JSON.parse(localStorage.getItem("companhias"))||[];
         }
-        
     }
 
     render(){
+        const validation = this.state.validation;
         return(
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <Input id="search_company" placeholder="Pesquise pelo o nome " onChange={this.handlerInputChange} search={true}/>
-                    <MdSearch />
-                    <button>Pesquisar</button>
-                </form>
-            </div>
+            <Container>
+                <Row>
+                    
+                   
+                        {validation.errorMenssages.map((error,index)=>(<p key={index}>{error}</p>))}
+                   
+                
+                    <Col sm={{size:8, offset:2}}>
+                        <form onSubmit={this.handleSubmit}>
+                            <FormGroup>
+                                <Input id="search_company" placeholder="Pesquise pelo o nome " onChange={this.handlerInputChange} search={true}/>
+                                <MdSearch />
+                            </FormGroup>
+                            <Button>Pesquisar</Button>
+                        </form>
+                    </Col>
+                
+                </Row>
+            </Container>
         );
     }
 }
