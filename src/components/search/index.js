@@ -1,6 +1,6 @@
 import React from "react";
 import { MdSearch } from "react-icons/md";
-import {Container, Row, Col, FormGroup, Input, Button, Alert} from 'reactstrap';
+import {Container, Row, Col, FormGroup, Input, Button} from 'reactstrap';
 
 class SearchCompany extends React.Component{
     constructor(props){
@@ -45,8 +45,12 @@ class SearchCompany extends React.Component{
     }
     handleSubmit = (event) => {
         event.preventDefault();
+        
         if(this.validate()){
-            let words = JSON.parse(localStorage.getItem("companhias"))||[];
+            let res_search_company = this.state.search_company.search;
+            let words = JSON.parse(localStorage.getItem("companhias"));
+            let map = new Map();
+            console.log(map.get(words));        
         }
     }
 
@@ -55,11 +59,7 @@ class SearchCompany extends React.Component{
         return(
             <Container>
                 <Row>
-                    
-                   
                         {validation.errorMenssages.map((error,index)=>(<p key={index}>{error}</p>))}
-                   
-                
                     <Col sm={{size:8, offset:2}}>
                         <form onSubmit={this.handleSubmit}>
                             <FormGroup>

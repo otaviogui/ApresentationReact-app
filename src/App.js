@@ -10,9 +10,11 @@ function App() {
     <div >
       <Container fluid>
         
-        
         <Row>
+          <h1> Faça a sua Pesquisa</h1>
           <Search />
+        </Row>
+        <Row>
           <FormRegisterNewCompany />   
         </Row>  
       </Container>

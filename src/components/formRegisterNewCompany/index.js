@@ -1,7 +1,5 @@
 import React from 'react';
-import Label from '../Label';
-
-import {Button, Container, Row, Col , Input, FormGroup} from 'reactstrap';
+import {Button, Container, Row, Col , Input, FormGroup, Label} from 'reactstrap';
 
 class FormRegisterNewCompany extends React.Component{
     constructor(props){
@@ -23,7 +21,7 @@ class FormRegisterNewCompany extends React.Component{
                 },
                 validation:{
                     name:true,
-                    email:true,
+                    mainNumber:true,
                     errorMenssages:[]
                 }
                 
@@ -98,20 +96,12 @@ class FormRegisterNewCompany extends React.Component{
         })
     }
     handleSubmit = (event) => {
-        
-        console.log("Form submetido.");
-        
         event.preventDefault();
         if(this.validate()){
             let companhia = this.state.company ;
-            let address = this.state.address;
             let	storage	= window.localStorage;
-
             let listaCompanhias = JSON.parse(localStorage.getItem('companhias')) || []; 
-           
-            listaCompanhias.push(companhia, address);
-            
-            
+            listaCompanhias.push(companhia);
             storage.setItem("companhias", JSON.stringify(listaCompanhias));
             this.resetState();
         }
@@ -130,49 +120,51 @@ class FormRegisterNewCompany extends React.Component{
                 </Row>
                 <Row>
                     <Col sm={{size:8, offset:2}}>
+                        
                         <form onSubmit={this.handleSubmit}>
+                            <legend>Cadastro de Nova Empresa</legend>
                             <FormGroup>
-                                <Label id="name" label="Nome da Companhia"/>
-                                <Input id="name" type="text" placeholder="Digite o nome da companhia"  onChange={this.handlerInputChange}/>
+                                <Label id="name" >Nome da Companhia</Label>
+                                <Input id="name" type="text" placeholder="Digite o nome da companhia"  onChange={this.handlerInputChange} value={this.state.company.name}/>
                             </FormGroup>
                             <FormGroup>
-                                <Label id="mainNumber" label="Telefone Principal"/>
-                                <Input id="mainNumber" type="text" placeholder=" Digite o telefone principal"  onChange={this.handlerInputChange}/>
+                                <Label id="mainNumber" >Telefone Principal</Label>
+                                <Input id="mainNumber" type="text" placeholder=" Digite o telefone principal"  onChange={this.handlerInputChange} value={this.state.company.mainNumber}/>
                             </FormGroup>
                             <FormGroup>
-                                <Label id="whatsappNumber" label="Numero WhatsApp"/>
-                                <Input id="whatsappNumber" type="text" placeholder=" Digite o WhatsApp da Empresa"  onChange={this.handlerInputChange}/>
+                                <Label id="whatsappNumber" >Numero WhatsApp</Label>
+                               <Input id="whatsappNumber" type="text" placeholder=" Digite o WhatsApp da Empresa"  onChange={this.handlerInputChange}  value={this.state.company.whatsappNumber}/>
                             </FormGroup>
                             <FormGroup>
-                                <Label id="imageLogo" label="Insirá a logo da compania"/>
-                                <Input id="imageLogo" type="file" placeholder="Logo da Companhia"  onChange={this.handlerInputChange}/>
+                                <Label id="imageLogo" >Insirá a logo da compania</Label>
+                                <Input id="imageLogo" type="file" placeholder="Logo da Companhia"  onChange={this.handlerInputChange} value={this.state.company.imageLogo}/>
                             </FormGroup>
                             <FormGroup>
-                                <Label id="CEP" label="Endereço"/>
+                                <Label id="CEP" >Endereço</Label>
                             </FormGroup>
                             <FormGroup>
-                                <Label id="CEP" label="CEP"/>
-                                <Input id="CEP" type="text" placeholder="Digite o CEP da companhia"  onChange={this.handlerInputChange}/>
+                                <Label id="CEP" >CEP</Label>
+                                <Input id="CEP" type="text" placeholder="Digite o CEP da companhia"  onChange={this.handlerInputChange} value={this.state.address.CEP}/>
                             </FormGroup>
                             <FormGroup>
-                                <Label id="state" label="Estado"/>
-                                <Input id="state" type="text" placeholder="Digite o Estado da companhia"  onChange={this.handlerInputChange}/>
+                                <Label id="state" >Estado</Label>
+                                <Input id="state" type="text" placeholder="Digite o Estado da companhia"  onChange={this.handlerInputChange} value={this.state.address.state}/>
                             </FormGroup>
                             <FormGroup>
-                                <Label id="city" label="Cidade"/>
-                                <Input id="city" type="text" placeholder="Digite a cidade da companhia"  onChange={this.handlerInputChange}/>
+                                <Label id="city" >Cidade</Label>
+                                <Input id="city" type="text" placeholder="Digite a cidade da companhia"  onChange={this.handlerInputChange} value={this.state.address.city}/>
                             </FormGroup>
                             <FormGroup>
-                                <Label id="neighborhood" label="Bairro"/>
-                                <Input id="neighborhood" type="text" placeholder="Digite o bairro da companhia"  onChange={this.handlerInputChange}/>
+                                <Label id="neighborhood" >Bairro</Label>
+                                <Input id="neighborhood" type="text" placeholder="Digite o bairro da companhia"  onChange={this.handlerInputChange} value={this.state.address.neighborhood}/>
                             </FormGroup>
                             <FormGroup>
-                                <Label id="number" label="Numero"/>
-                                <Input id="number" type="text" placeholder="Digite o numero da companhia"  onChange={this.handlerInputChange}/>
+                                <Label id="number" >Numero</Label>
+                                <Input id="number" type="text" placeholder="Digite o numero da companhia"  onChange={this.handlerInputChange} value={this.state.address.number}/>
                             </FormGroup>
                             <FormGroup>
-                                <Label id="complement" label="Complemento"/>
-                                <Input id="complement" type="text" placeholder="Digite o complemento da companhia"  onChange={this.handlerInputChange}/>
+                                <Label id="complement" >Complemento</Label>
+                                <Input id="complement" type="text" placeholder="Digite o complemento da companhia"  onChange={this.handlerInputChange} value={this.state.address.complement}/>
                             </FormGroup>
                             <FormGroup>
                                 <Button color="primary">Cadastrar Companhia </Button>
